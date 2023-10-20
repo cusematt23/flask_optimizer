@@ -1,9 +1,15 @@
 from flask import Flask, render_template, url_for, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+import os
+
+abs_path = os.path.abspath(__file__)
+current_directory = os.path.dirname(abs_path)
+db_path = current_directory + '/instance/test.db'
+db_config = 'sqlite:////' + db_path
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite://///Users/matthewmoore/Desktop/coding_projects/flask_tutorial/instance/test.db'#/// for rel path, //// for absolute path to db
+app.config['SQLALCHEMY_DATABASE_URI'] = db_config#/// for rel path, //// for absolute path to db
 db=SQLAlchemy(app)#to set up, open interactive python sell in terminal via python3 command, then "from app import db", then "db.create_all()"
 #But first you need to import your app into the python session, from <my_app> import app, then with app.app_context(): from app import db, then db.create_all()
 
@@ -68,5 +74,5 @@ def update(id):
 
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(debug=True)
 
