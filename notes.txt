@@ -1,0 +1,2 @@
+<!-- "{{}}" construction will evaluate functions inside and return result as a string -->
+<!-- "{%%}" construction more for loops -->
