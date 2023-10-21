@@ -18,7 +18,6 @@ class Todo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String(200), nullable=False)#nullable=False means that the content cannot be empty
     date_created = db.Column(db.DateTime, default=datetime.utcnow)#default=datetime.utcnow means that the date will be set automatically
-
     def __repr__(self):
         return '<Task %r>' % self.id#self.id goes into %r
 
@@ -27,7 +26,6 @@ class Todo(db.Model):
 def index():
     if request.method=='POST':
         task_content = request.form['content']#content is the name of the input field in the form, or ID?
-        print(task_content)
         new_task=Todo(content=task_content)#create new task object
         try:
             db.session.add(new_task)#add new task to db
